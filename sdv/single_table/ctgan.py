@@ -287,7 +287,8 @@ class CTGANSynthesizer(LossValuesMixin, BaseSingleTableSynthesizer):
 
         transformers = self._data_processor._hyper_transformer.field_transformers
         discrete_columns = detect_discrete_columns(self.metadata, processed_data, transformers)
-        self._model = CTGAN(**self._model_kwargs)
+        if self._model is None:
+           self._model = CTGAN(**self._model_kwargs)
         with warnings.catch_warnings():
             warnings.filterwarnings('ignore', message='.*Attempting to run cuBLAS.*')
             self._model.fit(processed_data, discrete_columns=discrete_columns)
