@@ -374,11 +374,6 @@ def check_synthesizer_version(synthesizer, is_fit_method=False, compare_operator
             f'Enterprise version {fit_enterprise_version}. {static_message}'
         )
 
-    if is_public_lower:
-        raise VersionError(
-            f'You are currently on SDV version {current_public_version} but this '
-            f'synthesizer was created on version {fit_public_version}. {static_message}'
-        )
 
     if is_enterprise_lower:
         raise VersionError(
